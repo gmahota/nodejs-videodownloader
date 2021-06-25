@@ -1,7 +1,7 @@
 let Btn = document.getElementById('btn');
 let URLinput = document.querySelector('.URL-input');
 let select = document.querySelector('.opt');
-let serverURL = 'https://vmzdownload.herokuapp.com';
+let serverURL = 'http://localhost:4000';
 
 Btn.addEventListener('click', () => {
 	if (!URLinput.value) {
