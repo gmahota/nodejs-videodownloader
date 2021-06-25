@@ -1,4 +1,5 @@
-# nodejs-videodownloader
+# nodejs-videodownloader 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/29a6e2cc-90d3-417e-aed1-e1aadb8b8dcc/deploy-status)](https://app.netlify.com/sites/vmzdownload/deploys)
 
 ### Deploying
 
