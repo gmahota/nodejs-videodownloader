@@ -1,12 +1,13 @@
 {
-    "license": "MIT",
-    "dependencies": {},
-    "scripts": {
-      "dev": "cd backend && yarn dev",
-      "start": "cd backend && node index.js",
-      "heroku-prebuild": "cd backend && npm install && npm run postinstall",
-      "build": "cd backend && npm install && npm run build",
-      "web-dev":"cd web && yarn dev"
-    }
+  "license": "MIT",
+  "dependencies": {
+    
+  },
+  "scripts": {
+    "dev": "cd backend && yarn dev",
+    "start": "cd backend && node index.js",
+    "heroku-prebuild": "cd backend && npm install && npm run postinstall",
+    "build": "cd backend && npm install && npm run build",
+    "web-dev": "cd web && yarn dev"
   }
-  
+}

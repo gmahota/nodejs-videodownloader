@@ -5,11 +5,11 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "heroku":"git subtree push --prefix backend heroku main"
+    "heroku": "git subtree push --prefix backend heroku main"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "ytdl-core": "^4.8.2"
+    "ytdl-core": "^4.8.3"
   }
 }
