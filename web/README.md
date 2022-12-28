@@ -1,43 +1,34 @@
-# Youtube Downloader
-
-This is a repository that has sample code for my [Medium Article](https://blog.usejournal.com/how-i-made-my-own-youtube-downloader-using-javascript-and-node-js-160b172f6e10)
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-If there is any issues please open a new issue.
+First, run the development server:
 
-1. You need to clone this repository
-```
-git clone https://github.com/mooradal/youtubeDownloader
-```
-
-2. After you clone the repo you will have to navigate to the Server folder
-```
-cd Server
-```
-
-3. Then you will have to install all the packages and dependencies
-```
-npm install 
-```
-
-4. Finally you need to run it
-```
-node index.js
-```
-
-5. If you want to use nodemon (nodemon is a package that will auto restart the server when files are changed) you can run **(Optional)**
-
-```
+```bash
 npm run dev
-```
-or
-```
-nodemon index.js
+# or
+yarn dev
 ```
 
-## Info
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-If there is any issues please open a new issue. You are welcome to add pull requests at anytime
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-Thank you so much for supporting me and thank you for almost 2,000 claps. I really appreciate that. I will try to post more articles and I'm thinking of turning this project from a sample code to an actual functional public website for everyone to use!
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
