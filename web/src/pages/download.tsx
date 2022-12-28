@@ -91,16 +91,16 @@ export default function Donwload(props: DonwloadProps) {
                 </form>
               </div>
             </Tabs.Item>
-            <Tabs.Item title="TikTok" icon={FaTiktok} className="bg-red-200 active text-black">
+            <Tabs.Item title="TikTok" icon={FaTiktok} className="bg-red-200 active text-black" disabled>
               TikTok
             </Tabs.Item>
-            <Tabs.Item title="vimeo">
+            <Tabs.Item title="vimeo" disabled>
               vimeo
             </Tabs.Item>
-            <Tabs.Item title="vine">
+            <Tabs.Item title="vine" disabled>
               Youtube
             </Tabs.Item>
-            <Tabs.Item title="Dailymotion">
+            <Tabs.Item title="Dailymotion" disabled>
               Youtube
             </Tabs.Item>
           </Tabs.Group>
