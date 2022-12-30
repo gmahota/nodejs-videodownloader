@@ -28,16 +28,16 @@ export default function Donwload(props: DonwloadProps) {
   const [query, setQuery] = useState('')
   const [modalShow, setModalShow] = useState(false)
 
-  async function downloadYoutube(event: FromEvent){
+  async function downloadYoutube(event: FormEvent){
 
     event.preventDefault()
 
-    const serverURL = "https://king-prawn-app-ks3if.ondigitalocean.app"
-
-    const res = await fetch(`${serverURL}/youtube/validateURL?url=${query}`);
+    const serverURL = "http://localhost:4000"
+    const res1 = await api.get(`youtube/validateURL?url=${query}`)
+    console.log(res1.data)
+    const res  = await fetch(`${serverURL}/youtube/validateURL?url=${query}`);
     
-    console.log(res.body)
-
+    console.log(res)
     setModalShow(true);
 
 
@@ -47,6 +47,8 @@ export default function Donwload(props: DonwloadProps) {
     event.preventDefault()
 
     const serverURL = "https://king-prawn-app-ks3if.ondigitalocean.app"
+
+    
 
     const res = await fetch(`${serverURL}/youtube/downloadmp3?url=${query}`);
     if (res.status == 200) {
