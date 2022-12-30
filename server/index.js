@@ -11,6 +11,20 @@ app.listen(PORT, () => {
   console.log(`Server Works !!! At port ${PORT}`);
 });
 
+app.get("/youtube/validateURL", async (req, res, next) => {
+  try {
+    var url = req.query.url;
+    if (!ytdl.validateURL(url)) {
+      return res.sendStatus(400);
+    }
+    let info = await ytdl.getInfo(videoID);
+
+    return res.sendStatus(200).send({info});
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 app.get("/youtube/downloadmp3", async (req, res, next) => {
   try {
     var url = req.query.url;
