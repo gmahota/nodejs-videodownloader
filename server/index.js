@@ -19,9 +19,23 @@ app.get("/youtube/validateURL", async (req, res, next) => {
     }
     var info = await ytdl.getInfo(url);
 
+    var formats = info.formats
+      .filter(p => (p.mimeType.includes("video") || p.mimeType.includes("audio")))
+      .map(f => {
+        return {
+          code: f.container,
+          type: f.hasVideo === true ? "video" : "audio",
+          quality: f.qualityLabel,
+          size: Math.round((f.hasVideo === true ? f.bitrate / 8 : f.audioBitrate / 8) / 1000, 2)
+        }
+      }).sort((a, b) => Number(b.size) - Number(a.size))
+
     res.status(200).json({
       state: 'sucess',
-      message: info.formats
+      video: {
+        source: 'youtube',
+        formats: formats
+      }
     });
   } catch (err) {
     console.error(err);
@@ -56,6 +70,9 @@ app.get("/youtube/downloadmp3", async (req, res, next) => {
 app.get("/youtube/downloadmp4", async (req, res, next) => {
   try {
     let url = req.query.url;
+    let qualityLabel = req.query.quality;
+    let type = req.query.type
+
     if (!ytdl.validateURL(url)) {
       return res.sendStatus(400);
     }
@@ -70,9 +87,9 @@ app.get("/youtube/downloadmp4", async (req, res, next) => {
 
     res.header("Content-Disposition", `attachment; filename="${title}.mp4"`);
 
-    await ytdl(url, {
-      format: "mp4",
-    }).pipe(res);
+    await ytdl(
+      url,
+      { filter: format => format.qualityLabel === qualityLabel && format.container=== type }).pipe(res);
   } catch (err) {
     console.error(err);
   }
