@@ -17,9 +17,9 @@ app.get("/youtube/validateURL", async (req, res, next) => {
     if (!ytdl.validateURL(url)) {
       return res.sendStatus(400);
     }
-    let info = await ytdl.getInfo(videoID);
+    await ytdl.getInfo(videoID).pipe(res);
 
-    return res.sendStatus(200).send({info});
+    //return res.sendStatus(200).send({info});
   } catch (err) {
     console.error(err);
   }
