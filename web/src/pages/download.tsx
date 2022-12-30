@@ -10,10 +10,12 @@ import { api } from './../lib/axios';
 
 import { FormEvent, useState } from 'react'
 
-import { Tabs } from "flowbite-react";
+import { Table, Tabs, Button, Modal, TextInput, Label, Checkbox } from "flowbite-react";
 
 import { AiFillYoutube } from "react-icons/ai";
 import { FaTiktok } from "react-icons/fa";
+
+import { MdDownloadForOffline } from "react-icons/md"
 
 
 interface DonwloadProps {
@@ -24,7 +26,22 @@ interface DonwloadProps {
 
 export default function Donwload(props: DonwloadProps) {
   const [query, setQuery] = useState('')
+  const [modalShow, setModalShow] = useState(false)
 
+  async function downloadYoutube(event: FromEvent){
+
+    event.preventDefault()
+
+    const serverURL = "https://king-prawn-app-ks3if.ondigitalocean.app"
+
+    const res = await fetch(`${serverURL}/youtube/validateURL?url=${query}`);
+    
+    console.log(res.body)
+
+    setModalShow(true);
+
+
+  }
   async function downloadMp3(event: FormEvent) {
 
     event.preventDefault()
@@ -32,16 +49,16 @@ export default function Donwload(props: DonwloadProps) {
     const serverURL = "https://king-prawn-app-ks3if.ondigitalocean.app"
 
     const res = await fetch(`${serverURL}/youtube/downloadmp3?url=${query}`);
-    if(res.status == 200) {
+    if (res.status == 200) {
       var a = document.createElement('a');
-        a.href = `${serverURL}/youtube/downloadmp3?url=${query}`;
-        a.setAttribute('download', '');
+      a.href = `${serverURL}/youtube/downloadmp3?url=${query}`;
+      a.setAttribute('download', '');
       a.click();
-    } else if(res.status == 400) {
+    } else if (res.status == 400) {
       alert("Invalid url");
     }
   }
-  
+
   async function downloadMp4(event: FormEvent) {
 
     event.preventDefault()
@@ -49,12 +66,12 @@ export default function Donwload(props: DonwloadProps) {
     const serverURL = "https://king-prawn-app-ks3if.ondigitalocean.app"
 
     const res = await fetch(`${serverURL}/youtube/downloadmp4?url=${query}`);
-    if(res.status == 200) {
+    if (res.status == 200) {
       var a = document.createElement('a');
-        a.href = `${serverURL}/youtube/downloadmp4?url=${query}`;
-        a.setAttribute('download', '');
+      a.href = `${serverURL}/youtube/downloadmp4?url=${query}`;
+      a.setAttribute('download', '');
       a.click();
-    } else if(res.status == 400) {
+    } else if (res.status == 400) {
       alert('Invalid url');
     }
   }
@@ -74,7 +91,7 @@ export default function Donwload(props: DonwloadProps) {
                 <p className='mt-4 text-sm text-gray-300 leading-relaxed grid place-items-center'>
                   Download your Youtube video or audio here</p>
 
-                <form onSubmit={downloadMp4} className='mt-10 flex gap-2'>
+                <form onSubmit={downloadYoutube} className='mt-10 flex gap-2'>
                   <input
                     className='flex-1 px-6 py-4 rounded bg-gray-800 border-gray-600 text-sm text-gray-100'
                     type="text"
@@ -108,7 +125,120 @@ export default function Donwload(props: DonwloadProps) {
 
         </div>
 
+        <React.Fragment >
+          <Modal
+            show={modalShow}
+            size="md"
+            popup={true}
+            onClose={() => setModalShow(false)}
+            className="dark"
+          >
+            <Modal.Header >
+            </Modal.Header>
+            <Modal.Body>
+              <div className="grid place-items-center items-center">
+                <Button.Group>
+                  <Button pill={true}>
+                    Video
+                  </Button>
+                  <Button color="gray">
+                    Audio
+                  </Button>
+                </Button.Group>
+              </div>
+              <div className="pt-10">
+                <Table>
+                  <Table.Body className="divide-y">
+                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        <b>Qualidade</b>
+                      </Table.Cell>
+                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        <b>Tamanho</b>
+                      </Table.Cell>
+                      <Table.Cell>
 
+                      </Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        1080p (Full HD)
+                      </Table.Cell>
+                      <Table.Cell >
+                        10.5 MB
+                      </Table.Cell>
+                      <Table.Cell>
+                        <MdDownloadForOffline size={35} color="#1AB7EA" />
+                      </Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        720p (m-HD)
+                      </Table.Cell>
+                      <Table.Cell>
+                        10.5 MB
+                      </Table.Cell>
+                      <Table.Cell>
+                        <MdDownloadForOffline size={35} color="#1AB7EA" />
+                      </Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                      <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                        480p
+                      </Table.Cell>
+                      <Table.Cell>
+                        10.5 MB
+                      </Table.Cell>
+                      <Table.Cell>
+                        <MdDownloadForOffline size={35} color="#1AB7EA" />
+                      </Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                      <Table.Cell>
+                        360p
+                      </Table.Cell>
+                      <Table.Cell>
+                        10.5 MB
+                      </Table.Cell>
+                      <Table.Cell>
+                        <MdDownloadForOffline size={35} color="#1AB7EA" />
+                      </Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                      <Table.Cell>
+                        240p
+                      </Table.Cell>
+                      <Table.Cell>
+                        10.5 MB
+                      </Table.Cell>
+                      <Table.Cell>
+                        <MdDownloadForOffline size={35} color="#1AB7EA" />
+                      </Table.Cell>
+                    </Table.Row>
+
+                    <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 dark:text-white">
+                      <Table.Cell>
+                        144p
+                      </Table.Cell>
+                      <Table.Cell>
+                        10.5 MB
+                      </Table.Cell>
+                      <Table.Cell>
+
+                        <MdDownloadForOffline size={35} color="#1AB7EA" />
+                      </Table.Cell>
+                    </Table.Row>
+                  </Table.Body>
+                </Table>
+              </div>
+            </Modal.Body>
+          </Modal>
+        </React.Fragment>
 
 
 

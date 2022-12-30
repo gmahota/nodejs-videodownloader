@@ -4,10 +4,10 @@
     
   },
   "scripts": {
-    "dev": "cd backend && yarn dev",
-    "start": "cd backend && node index.js",
-    "heroku-prebuild": "cd backend && npm install && npm run postinstall",
-    "build": "cd backend && npm install && npm run build",
+    "dev": "cd server && yarn dev",
+    "start": "cd server && node index.js",
+    "heroku-prebuild": "cd server && npm install && npm run postinstall",
+    "build": "cd server && npm install && npm run build",
     "web-dev": "cd web && yarn dev"
   }
 }
